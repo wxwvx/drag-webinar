@@ -1,5 +1,3 @@
-
-/* sortable */
 .sortable {
   background: #485460;
   min-height: 150px;
@@ -20,14 +18,8 @@
   border: 1px dashed transparent;
 }
 
-
 .sortable__item:first-child {
   margin-left: 0;
-}
-
-.hidden {
-  opacity: 0;
-  margin-right: -172px;
 }
 
 .sortable__pic {
