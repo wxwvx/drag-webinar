@@ -5,8 +5,8 @@ const coords = {};
 
 const measureElem = (elem, event) => {
   const measures = elem.getBoundingClientRect();
-  
-  const borderWidth = parseInt(getComputedStyle(elem)["border-width"]) * 2; 
+
+  const borderWidth = parseInt(getComputedStyle(elem)["border-width"]) * 2;
 
   return {
     offsetTop: measures.top,
@@ -26,20 +26,27 @@ const setupMeasures = e => {
   coords.block = measureElem(blockElem, e);
 };
 
-const setupBlockPosition = (block, wrap) => {
-  if (block.x < 0) block.x = 0;
-  if (block.y < 0) block.y = 0;
+const checkEdges = (block, wrap, fn) => {
+  let x = block.x;
+  let y = block.y;
 
-  if (block.x > wrap.width - block.width) {
-    block.x = wrap.width - block.width;
+  if (x < 0) x = 0;
+  if (y < 0) y = 0;
+
+  if (x > wrap.width - block.width) {
+    x = wrap.width - block.width;
   }
 
-  if (block.y > wrap.height - block.height) {
-    block.y = wrap.height - block.height;
+  if (y > wrap.height - block.height) {
+    y = wrap.height - block.height;
   }
 
-  blockElem.style.left = `${block.x}px`;
-  blockElem.style.top = `${block.y}px`;
+  fn.call(this, x, y);
+};
+
+const setupBlockPosition = (x, y) => {
+  blockElem.style.left = `${x}px`;
+  blockElem.style.top = `${y}px`;
 };
 
 const moveElement = e => {
@@ -50,7 +57,7 @@ const moveElement = e => {
   block.x = e.pageX - wrap.offsetLeft - block.clickedX - wrap.borderWidth;
   block.y = e.pageY - wrap.offsetTop - block.clickedY - wrap.borderWidth;
 
-  setupBlockPosition(block, wrap);  
+  checkEdges(block, wrap, setupBlockPosition);
 };
 
 const cancelDrag = e => {
