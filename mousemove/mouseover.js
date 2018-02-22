@@ -1,11 +1,10 @@
 const blockElem = document.getElementById("block");
 const wrapElem = document.getElementById("wrap");
 
-const coords = {};
+let coords = {};
 
 const measureElem = (elem, event) => {
   const measures = elem.getBoundingClientRect();
-
   const borderWidth = parseInt(getComputedStyle(elem)["border-width"]) * 2;
 
   return {

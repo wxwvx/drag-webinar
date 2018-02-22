@@ -4,19 +4,24 @@ const imagesList = document.querySelector(".images__list");
 
 droplist.addEventListener("dragstart", e => e.preventDefault());
 
-
 imagesList.addEventListener("dragstart", e => {
   const src = e.target.getAttribute("src");
-  e.dataTransfer.setData("src", src);
-  e.dataTransfer.effectAllowed = "copy"
+  const id = "id" + Math.round(Math.random() * 100);
+
+  e.target.id = id;
+
+  e.dataTransfer.setData("elem", e.target.innerHTML);
+  e.dataTransfer.setData("id", id);
+
+  console.log(id);
+  // e.dataTransfer.effectAllowed = "copy"
 });
 
 dropzone.addEventListener("dragover", e => {
   e.preventDefault();
   dropzone.classList.add("active");
-  e.dataTransfer.dropEffect = "copy"
+  // e.dataTransfer.dropEffect = "copy"
 });
-
 
 dropzone.addEventListener("dragleave", e => {
   e.preventDefault();
@@ -27,14 +32,14 @@ dropzone.addEventListener("drop", e => {
   e.preventDefault();
   dropzone.classList.remove("active");
 
-  const src = e.dataTransfer.getData("src");
-  const elem = createItem(src);
+  const elem = document.createElement("li");
+  const draggedElement = document.getElementById(e.dataTransfer.getData("id"));
 
-  const draggedElement = document.querySelector(`[src="${src}"]`).parentElement;
-
-  imagesList.removeChild(draggedElement);
+  elem.className = "drop-list__item";
+  elem.innerHTML = e.dataTransfer.getData("elem");
 
   droplist.appendChild(elem);
+  imagesList.removeChild(draggedElement);
 });
 
 function createItem(src) {

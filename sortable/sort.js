@@ -15,15 +15,15 @@ sortlist.addEventListener("dragenter", e => {
     const placeholders = document.querySelectorAll(".placeholder");
     elem.className = "sortable__item placeholder";
 
-    Array.from(placeholders).forEach(element => {
-      sortlist.removeChild(element);
-    });
+    Array.from(placeholders).forEach(element => sortlist.removeChild(element));
 
     target.parentElement.insertBefore(elem, target);
   }
 });
 
-sortlist.addEventListener("dragover", e => {e.preventDefault()});
+sortlist.addEventListener("dragover", e => {
+  e.preventDefault();
+});
 
 sortlist.addEventListener("drop", e => {
   const hiddenElem = document.querySelector(".hidden");
@@ -38,7 +38,7 @@ sortlist.addEventListener("drop", e => {
 sortlist.addEventListener("dragend", e => {
   const hiddenElem = document.querySelector(".hidden");
   const placeholder = document.querySelector(".placeholder");
-  
+
   sortlist.removeChild(placeholder);
-  hiddenElem.classList.remove('hidden')
+  hiddenElem.classList.remove("hidden");
 });

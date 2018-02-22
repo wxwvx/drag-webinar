@@ -1,0 +1,24 @@
+#wrap {
+	width: 500px;
+	height: 400px;
+	border: 3px dashed #2C3A47;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  text-align: left;
+  margin-top: 100px;
+}
+
+#block {
+	width: 50px;
+	height: 50px;
+	background: #FC427B;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#block:hover {
+  cursor: move;
+}

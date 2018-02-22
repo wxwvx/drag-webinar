@@ -1,0 +1,54 @@
+
+.wrap {
+  text-align: left;
+  margin: 50px 10%;
+}
+
+.images {
+  min-height: 150px;
+  margin-bottom: 20px;
+}
+
+.images__list {
+  display: flex;
+}
+
+.images__item {
+  border: 1px solid black;
+  width: 150px;
+  height: 150px;
+  margin-right: 20px;
+}
+
+.images__pic {
+  max-width: 100%;
+  max-height: 100%;
+  pointer-events: none;
+}
+
+.dropzone {
+  flex: 1;
+  padding: 10px;
+  background: #10ac84;
+  border-radius: 10px;
+  min-height: 150px;
+  transition: .3s;
+}
+
+.active {
+  background: #ff9f43;
+}
+
+.drop-list__item {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  margin-right: 20px;
+  border: 1px dashed transparent;
+}
+
+.drop-list__img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
