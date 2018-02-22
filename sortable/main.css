@@ -34,3 +34,8 @@
   border-color: #00d8d6;
   border-radius: 5px;
 }
+
+.hidden {
+  opacity: 0;
+  margin-right: -172px;
+}
